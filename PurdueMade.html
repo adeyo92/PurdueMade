@@ -4,35 +4,35 @@
 
 <body>
 	<div class='container'>
-	{{>signup}}
-	{{>hello}}
-</div>
+	   {{>signup}}
+	   {{>hello}}
+    </div>
 </body>
 
 <template name="hello">
-  <h1>Hello World!</h1>
+    <h1>Hello World!</h1>
 </template>
 
 <template name='startups'>
-<li>
-{{name}}
-</li>
+    <li>
+        {{name}}
+    </li>
 </template>
 
 <template name='signup'>
 	<a href="#signup" role="button" class="btn" data-toggle="modal">Signup</a>
 	<div id='signup' class="modal hide fade">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Signup</h3>
-    </div>
-    <div class="modal-body">
-   	<button class='btn'>Student/Alumni</button>
-	<button class='btn'>Resource</button>
-    </div>
-    <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary" disabled>Signup!</a>
-    </div>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Signup</h3>
+        </div>
+        <div class="modal-body">
+            <button id="studentAlumButton" class='btn'>Student/Alumni</button>
+            <button id="resourceButton" class='btn'>Resource</button>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn">Close</a>
+            <a href="#" class="btn btn-primary" disabled>Signup!</a>
+        </div>
     </div>
 </template>
