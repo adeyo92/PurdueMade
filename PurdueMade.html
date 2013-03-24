@@ -4,8 +4,9 @@
 
 <body>
 	<div class='container'>
-	   {{>signup}}
-	   {{>hello}}
+        {{>login}}
+        {{>register}}
+        {{>hello}}
     </div>
 </body>
 
@@ -19,20 +20,44 @@
     </li>
 </template>
 
-<template name='signup'>
-	<a href="#signup" role="button" class="btn" data-toggle="modal">Signup</a>
-	<div id='signup' class="modal hide fade">
+<template name='register'>
+    <a href="#signup" role="button" class="btn" data-toggle="modal">Signup</a>
+    <div id='signup' class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3>Signup</h3>
         </div>
-        <div class="modal-body">
-            <button id="studentAlumButton" class='btn'>Student/Alumni</button>
-            <button id="resourceButton" class='btn'>Resource</button>
-        </div>
+            <form id="register-form" action="action">
+              <div>
+               <input type="email" id="account-email" />
+               <input type="password" id="account-password" />
+               <input type="submit" id="create-account" value="Create an Account" />
+             </div>
+           </form>
         <div class="modal-footer">
             <a href="#" class="btn">Close</a>
             <a href="#" class="btn btn-primary" disabled>Signup!</a>
+        </div>
+    </div>
+</template>
+<template name='login'>
+    <a href="#login" role="button" class="btn" data-toggle="modal">Login</a>
+    <div id='login' class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Login</h3>
+        </div>
+        <div class="modal-body">
+            <form id="login-form" action="action">
+              <div>
+                <input type="email" id="login-email" />
+                <input type="password" id="login-password" />
+                <input type="submit" id="login-button" value="Login" />
+             </div>
+           </form> 
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn">Close</a>
         </div>
     </div>
 </template>

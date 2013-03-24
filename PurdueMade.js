@@ -2,13 +2,83 @@ if (Meteor.isClient) {
 	Companies = new Meteor.Collection("companies");
 	People = new Meteor.Collection("people");
 
-	Template.signup.events({
-		'click button': function (e) {
-			//render template for signup form pass data for type of user based on which button is clicked
-			var userType = e.currentTarget.id;
-			console.log(userType);
-		}
-	});
+	 Template.login.events({
+
+	    'submit #login-form' : function(e, t){
+	      e.preventDefault();
+	      // retrieve the input field values
+	      var email = t.find('#login-email').value
+	        , password = t.find('#login-password').value;
+
+	        // Trim and validate your fields here.... 
+	        email = trimInput(email);
+
+
+	        // If validation passes, supply the appropriate fields to the
+	        // Meteor.loginWithPassword() function.
+	        Meteor.loginWithPassword(email, password, function(err){
+		        if (err) {
+		          // The user might not have been found, or their passwword
+		          // could be incorrect. Inform the user that their
+		          // login attempt has failed. 
+		        } else {
+		          // The user has been logged in.
+		        }
+	     		});
+	         return false; 
+	      }
+	  });
+		 Template.register.events({
+	    'submit #register-form' : function(e, t) {
+	      e.preventDefault();
+	      var email = t.find('#account-email').value
+	        , password = t.find('#account-password').value;
+
+	       // Trim and validate the input
+	       email = trimInput(email);
+	       password = isValidPassword(password, e.currentTarget.id);
+
+	      Accounts.createUser({email: email, password : password}, function(err) {
+	          if (err) {
+	            // Inform the user that account creation failed
+	          } else {
+	            // Success. Account has been created and the user
+	            // has logged in successfully. 
+	          }
+	        });
+	    	}
+	   });
+
+    // trim helper
+	  var trimInput = function(val) {
+	    return val.replace(/^\s*|\s*$/g, "");
+	  }
+
+	  //make sure password is 6 characters
+	  var isValidPassword = function(val,form) {
+     if (val.length >= 6) {
+     	return true;
+     } else {
+     	 Session.set('displayMessage', "Password must be at least 6 characters long.");
+     	 Session.set('displayMessageForm', form)
+     	 return false;
+     }
+  	}
+
+  //function to display error messages
+	Deps.autorun(function() {
+    // Whenever this session variable changes, run this function.
+    var message = Session.get('displayMessage');
+    var messageForm = Session.get('displayMessageForm');
+    if (message) {
+    	//use jquery to diplay message
+    	$("#"+messageForm).prepend(message);
+
+      Session.set('displayMessage', null);
+      Session.set('displayMessageForm', null);
+    }
+  });
+
 }
 
 if (Meteor.isServer) {
