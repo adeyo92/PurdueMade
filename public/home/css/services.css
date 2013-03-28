@@ -1,0 +1,156 @@
+/*Service Option 3*/
+#process{
+	min-height: 350px;
+}
+#process .section_header h3{
+	margin:0;
+}
+#process .description{
+	position: relative;
+}
+#process .description .text{
+	position: absolute;
+	display: none;
+}
+#process .description .text.active {
+	display: block;
+}
+#process .description h4{
+	font-size: 32px;
+	line-height: 35px;
+	font-weight: normal;
+	margin-bottom: 20px;
+}
+#process .description p{
+	font-size: 15px;
+	color: #3F3F3F;
+	line-height: 26px;
+}
+#process .areas{
+	margin-left: 0;
+	float: right;
+}
+#process .areas .circle{
+	height: 210px;
+	cursor: pointer;
+	float: left;
+	margin-right: -45px;
+	text-align: center;
+	width: 210px;
+	background: rgba(37, 37, 40, 0.9);
+	border-radius: 100%;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	transition: all .3s;
+}
+#process .areas .first{
+	margin-left: 0;
+}
+#process .areas .circle img{
+	margin-top: 56px;
+}
+#process .areas .circle span{
+	font-weight: 700;
+	font-size: 22px;
+	color: #fff;
+	display: block;
+	margin-top: 21px;
+}
+#process .areas .circle:hover,
+#process .areas .circle.active {
+	background: #a37600;
+}
+
+/* Responsive
+-------------------------------------------------- */
+
+/* Large desktop */
+@media (min-width: 1200px) {
+}
+@media (min-width: 980px) {
+}
+@media (max-width: 979px) {
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+	#service_2 .description_wrapper{
+		width: 77%;
+	}
+	#process .areas{
+		text-align: center;
+	}
+	#team .people .bio_box .info{
+		margin: 0;
+		float: none;
+	}
+	#process .areas .last_circle{
+		float: none;
+		display: inline-block;
+		margin-left: -75px;
+		margin-top: -54px;
+	}
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {	
+	#service_1 .service_wrapper .feature .img_box{
+		text-align: center;
+	}
+	#service_1 .service_wrapper .feature:hover .img_box{
+		box-shadow: none;
+	}
+	#service_1 .service_wrapper .feature{
+		text-align: center;
+		margin-bottom: 60px;
+	}
+	#service_2 .perk{
+		text-align: center;
+		margin-bottom: 70px;
+	}
+	#service_2 .circle{
+		float: none;
+		margin-bottom: 20px;
+		display: inline-block;
+	}
+	#service_2 .description_wrapper h5{
+		margin-bottom: 15px;
+	}
+	#process .areas{
+		margin-top: 193px;
+		margin-bottom: 0px;
+		text-align: center;
+	}
+	#process .areas .circle{
+		float: none;
+		display: inline-block;
+		margin: 0;
+	}
+	#process .areas .last_circle{
+		margin-top: -23px;
+	}
+}
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	#service_1 .service_wrapper .feature .img_box{
+		width: 100%;
+	}
+	#service_1 .service_wrapper .feature .text p{
+		text-align: left;
+	}
+	#process .areas{
+		margin-top: 250px;
+	}
+	#process .areas .circle{
+		width: 100px;
+		height: 100px;
+	}
+	#process .areas .last_circle{
+		margin-top: 0;
+	}
+	#process .areas .circle img{
+		margin-top: 22px;
+	}
+	#process .areas .circle span{
+		display: none;
+	}
+}

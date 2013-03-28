@@ -13,3 +13,5 @@ less
 accounts-google
 accounts-base
 accounts-password
+jquery
+backbone

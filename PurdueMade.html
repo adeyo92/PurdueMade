@@ -1,63 +1,272 @@
 <head>
   <title>PurdueMade</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<div class='container'>
-        {{>login}}
-        {{>register}}
-        {{>hello}}
+	<div class='pull_top'>
+        {{>header}}
+
+        {{>renderPage}}
+
+        {{>footer}}
     </div>
 </body>
 
-<template name="hello">
-    <h1>Hello World!</h1>
+<template name='renderPage'>
+
+        {{#if mainPage}}
+          {{>feature_slider}}
+          {{>service}}
+        {{/if}}
+
+        {{#if loginPage}}
+          {{>login}}
+        {{/if}}
+
+        {{#if signupPage}}
+          {{>signup}}
+        {{/if}}
+
 </template>
 
-<template name='startups'>
-    <li>
-        {{name}}
-    </li>
-</template>
+<template name='login'>
+    <!-- Sign In -->
+    <div id="sign_in1">
+        <div class="container">
+            <div class="row">
+                <div class="span12 header">
+                    <h4>Log in to your account</h4>
+                    <p>
+                        There are many variations of passages of Lorem alteration in some form  injected humour these randomised words .</p>
 
-<template name='register'>
-    <a href="#signup" role="button" class="btn" data-toggle="modal">Signup</a>
-    <div id='signup' class="modal hide fade">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Signup</h3>
-        </div>
-            <form id="register-form" action="action">
-              <div>
-               <input type="email" id="account-email" />
-               <input type="password" id="account-password" />
-               <input type="submit" id="create-account" value="Create an Account" />
-             </div>
-           </form>
-        <div class="modal-footer">
-            <a href="#" class="btn">Close</a>
-            <a href="#" class="btn btn-primary" disabled>Signup!</a>
+                    <div class="span4 social">
+                        <a href="#" class="circle facebook">
+                            <img src="img/face.png" alt="">
+                        </a>
+                         <a href="#" class="circle twitter">
+                            <img src="img/twt.png" alt="">
+                        </a>
+                         <a href="#" class="circle gplus">
+                            <img src="img/gplus.png" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="span3 division">
+                    <div class="line l"></div>
+                    <span>or</span>
+                    <div class="line r"></div>
+                </div>
+
+                <div class="span12 footer">
+                    <form id="login-form" action="action">
+                        <input type="email" placeholder="Email" id="login-email">
+                        <input type="password" placeholder="Password" id="login-password">
+                        <input type="submit" id="login-button" value="Login">
+                    </form>
+                </div>
+
+                <div class="span12 proof">
+                    <div class="span5 remember">
+                        <label class="checkbox">
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="reset.html">Forgot password?</a>
+                    </div>
+
+                    <div class="span3 dosnt">
+                        <span>Don’t have an account?</span>
+                        <a href="sign-up.html">Sign up</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
-<template name='login'>
-    <a href="#login" role="button" class="btn" data-toggle="modal">Login</a>
-    <div id='login' class="modal hide fade">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Login</h3>
+<template name="header">
+    <div class="navbar transparent navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">
+                <strong>Purdue Made</strong>
+            </a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                  <li><a href="companies.html">COMPANIES</a></li>
+                    <li><a href="students.html">STUDENTS</a></li>
+                    <li><a href="alumni.html">ALUMNI</a></li>
+                    <li><a href="resources.html">RESOURCES</a></li>
+                    <li><a class="btn-header" href="/signup">Sign up</a></li>
+                    <li><a class="btn-header" href="/login">Login</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="modal-body">
-            <form id="login-form" action="action">
-              <div>
-                <input type="email" id="login-email" />
-                <input type="password" id="login-password" />
-                <input type="submit" id="login-button" value="Login" />
-             </div>
-           </form> 
+      </div>
+    </div>
+</template>
+<template name="feature_slider">
+    <section id="feature_slider" class="">
+        
+        <article class="slide" id="showcasing" style="background: url('/img/backgrounds/test.jpg') repeat-x top center;">
+            <img class="asset left-30 sp600 t120 z1" src="" />
+            <div class="info">
+                <h2>Lorem Ipsum is simply dummy text.</h2>
+            </div>
+        </article>
+        <article class="slide" id="ideas" style="background: url('/img/backgrounds/test.png') repeat-x top center;">
+            <div class="info">
+                <h2>Lorem Ipsum is simply dummy text. </h2>
+            </div>
+            
+            <img class="asset left-210 sp600 t213 z2" src="" />
+            
+        </article>
+        <article class="slide" id="tour" style="background: url('/img/backgrounds/test.jpg') repeat-x top center;">
+            <img class="asset left-472 sp650 t210 z3" src="" />
+            <img class="asset left-365 sp600 t270 z4" src="" />
+            <img class="asset left-350 sp450 t135 z2" src="" />
+            <img class="asset left-185 sp550 t220 z1" src="" />
+            <div class="info">
+                <h2>Lorem Ipsum is simply dummy text.</h2>
+                <a href="features.html">Check It Out</a>
+            </div>
+        </article>      
+    </section>
+</template>
+
+<template name="service">
+<!-- Service -->
+    <div id="process">
+        <div class="container">
+            <div class="section_header">
+                <h3>About</h3>
+            </div>
+            <div class="row services_circles">
+                <div class="span4 description">
+                    <div class="text active">
+                        <h4>Lorem Ipsum is simply dummy text.</h4>
+                        <p>
+                            There are many variations of passages of  this suffered alteration in some form, by injected look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to making this the first true generator  Internet.</p>
+                    </div>
+                    <div class="text">
+                        <h4>dummy text.</h4>
+                        <p>
+                            There are many variations of passages of  this suffered alteration in some form, by injected look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to 
+                            making this the first true generator  Internet.</p>
+                    </div>
+                    <div class="text">
+                        <h4>Lorem Ipsum </h4>
+                        <p>
+                            There are many variations of passages of  this suffered alteration in some form, by injected look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to making this the first true generator  Internet.</p>
+                    </div>
+                </div>
+
+                <div class="span7 areas">
+                    <div class="circle active">
+                        <img src="img/plan.png" />
+                        <span>Random</span>
+                    </div>
+                    <div class="circle">
+                        <img src="img/develop.png" />
+                        <span>Random</span>
+                    </div>
+                    <div class="circle last_circle">
+                        <img src="img/design.png" />
+                        <span>Random</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a href="#" class="btn">Close</a>
+    </div>
+</template>
+
+<template name="footer">
+    <!-- starts footer -->
+    <footer id="footer">
+        <div class="container">
+            
+               
+            <div class="row credits">
+                <div class="span12">
+                    <div class="row social">
+                        <div class="span12">
+                            <a href="#" class="facebook">
+                                <span class="socialicons ico1"></span>
+                                <span class="socialicons_h ico1h"></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="socialicons ico2"></span>
+                                <span class="socialicons_h ico2h"></span>
+                            </a>
+           
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="span12">
+                            © 2013   Andrew Linfoot, Colin Durbin, Laolu Adeyo
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </footer>
+</template>
+<template name="signup">
+ <!-- Sign Un  -->
+    <div id="sign_up1">
+        <div class="container">
+            <div class="row">
+                <div class="span12 header">
+                    <h4>Create your account</h4>
+                    <p>
+                        There are many variations of passages of Lorem alteration in some form  injected humour these randomised words .</p>
+
+                    <div class="span4 social">
+                        <a href="#" class="circle facebook">
+                            <img src="img/face.png" alt="">
+                        </a>
+                         <a href="#" class="circle twitter">
+                            <img src="img/twt.png" alt="">
+                        </a>
+                         <a href="#" class="circle gplus">
+                            <img src="img/gplus.png" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="span3 division">
+                    <div class="line l"></div>
+                    <span>or</span>
+                    <div class="line r"></div>
+                </div>
+
+                <div class="span12 footer">
+                    <form id="signup-form" action="action">
+                        <input type="email" placeholder="Email" id="signup-email">
+                        <input type="password" placeholder="Password" id="signup-password">
+                        <input type="password" placeholder="Confirm Password" id="confirm-signup-password">
+                        <input type="submit"  value="sign up" id="signup-create-account">
+                    </form>
+                </div>
+
+                <!-- <div class="span5 remember">
+                    <label class="checkbox">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div> -->
+
+                <div class="span12 dosnt">
+                    <span>Already have an account?</span>
+                    <a href="/login">Sign in</a>
+                </div>
+            </div>
         </div>
     </div>
 </template>

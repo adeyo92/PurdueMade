@@ -2,6 +2,53 @@ if (Meteor.isClient) {
 	Companies = new Meteor.Collection("companies");
 	People = new Meteor.Collection("people");
 
+	//handles routes and page navigation
+	var Router = Backbone.Router.extend({
+		routes: {
+			"" : 	"main",
+			"login": "login",
+			"signup": "signup"
+		},
+
+		main: function() {
+			Session.set('currentPage', 'mainPage');
+		},
+
+		login: function() {
+			Session.set('currentPage', 'loginPage');
+		},
+
+		signup: function() {
+			Session.set('currentPage', 'signupPage');
+		}
+	});
+	var app = new Router;
+	Meteor.startup(function () {
+		Backbone.history.start({pushState: true});
+	});
+	Template.renderPage.mainPage = function() {
+		if( Session.get('currentPage') === 'mainPage' ) {
+			return true;			
+		} else {
+			return false;
+		}
+	}	
+	Template.renderPage.loginPage = function() {
+		if( Session.get('currentPage') === 'loginPage' ) {
+			return true;			
+		} else {
+			return false;
+		}
+	}
+	Template.renderPage.signupPage = function() {
+		if( Session.get('currentPage') === 'signupPage') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
 	 Template.login.events({
 
 	    'submit #login-form' : function(e, t){
@@ -29,11 +76,12 @@ if (Meteor.isClient) {
 	         return false; 
 	      }
 	  });
-		 Template.register.events({
-	    'submit #register-form' : function(e, t) {
+		 Template.signup.events({
+	    'submit #signup-form' : function(e, t) {
 	      e.preventDefault();
-	      var email = t.find('#account-email').value
-	        , password = t.find('#account-password').value;
+	      var email = t.find('#signup-email').value
+	        , password = t.find('#signup-password').value
+	        , confirm_password = t.find('#signup-confirm-password').value;
 
 	       // Trim and validate the input
 	       email = trimInput(email);
@@ -80,6 +128,28 @@ if (Meteor.isClient) {
     }
   });
 
+	Template.header.rendered = function() {
+	    if(!this._rendered) {
+			this._rendered = true;
+			theme_function();
+			console.log('Template onLoad');
+	    }		
+	}
+	Template.feature_slider.rendered = function() {
+	    if(!this._rendered) {
+			this._rendered = true;
+			theme_function();
+			feature_slider_js();
+			console.log('Template onLoad');
+	    }
+	}	
+	Template.service.rendered = function() {
+	    if(!this._rendered) {
+	      this._rendered = true;
+	      theme_function();
+	      console.log('Template onLoad');
+	    }
+	}
 }
 
 if (Meteor.isServer) {
