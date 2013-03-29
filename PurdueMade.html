@@ -28,6 +28,10 @@
           {{>signup}}
         {{/if}}
 
+        {{#if companiesPage}}
+            {{>companies}}
+        {{/if}}
+
 </template>
 
 <template name='login'>
@@ -98,7 +102,7 @@
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                  <li><a href="companies.html">COMPANIES</a></li>
+                  <li><a href="/companies">COMPANIES</a></li>
                     <li><a href="students.html">STUDENTS</a></li>
                     <li><a href="alumni.html">ALUMNI</a></li>
                     <li><a href="resources.html">RESOURCES</a></li>
@@ -250,7 +254,7 @@
                     <form id="signup-form" action="action">
                         <input type="email" placeholder="Email" id="signup-email">
                         <input type="password" placeholder="Password" id="signup-password">
-                        <input type="password" placeholder="Confirm Password" id="confirm-signup-password">
+                        <input type="password" placeholder="Confirm Password" id="signup-confirm-password">
                         <input type="submit"  value="sign up" id="signup-create-account">
                     </form>
                 </div>
@@ -267,6 +271,120 @@
                     <a href="/login">Sign in</a>
                 </div>
             </div>
+        </div>
+    </div>
+</template>
+
+<template name="companies">
+    <div id="companies">
+        <div class="container">
+            <div class="section_header">
+                <h3>Companies</h3>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div id="filters_container">
+                        <ul id="filters">
+                            <li><a href="#" data-filter="*" class="active">All</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".art">SAAS</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".ilustration">Mobile</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".print">E-Commerce</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".web">Other</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="span12">
+                    <div id="gallery_container">
+                        <div class="photo art web">
+                            <img src="img/amatron.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>SAAS</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo illustration">
+                            <img src="img/cloud.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>Other</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo print">
+                            <img src="img/fruit.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>E-Commerce</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo art web">
+                            <img src="img/Music.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>Other</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo art ilustration">
+                            <img src="img/raptor.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>Mobile</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo print">
+                            <img src="img/Shitstorm.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>E-Commerce</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo web">
+                            <img src="img/soul.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>Other</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo art ilustration web">
+                            <img src="img/amatron.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>SAAS</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                        <div class="photo print">
+                            <img src="img/cloud.png" />
+                            <a href="portfolio-item.html" class="mask">
+                                <h3>COMPANY NAME</h3>
+                                <small>www.company.com</small>
+                                <small>Mobile</small>
+                                <div class="more">+</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </div>
     </div>
 </template>

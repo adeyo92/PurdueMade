@@ -7,7 +7,8 @@ if (Meteor.isClient) {
 		routes: {
 			"" : 	"main",
 			"login": "login",
-			"signup": "signup"
+			"signup": "signup",
+			"companies": "companies"
 		},
 
 		main: function() {
@@ -20,6 +21,10 @@ if (Meteor.isClient) {
 
 		signup: function() {
 			Session.set('currentPage', 'signupPage');
+		},
+
+		companies: function() {
+			Session.set('currentPage', 'companiesPage');
 		}
 	});
 	var app = new Router;
@@ -42,6 +47,13 @@ if (Meteor.isClient) {
 	}
 	Template.renderPage.signupPage = function() {
 		if( Session.get('currentPage') === 'signupPage') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	Template.renderPage.companiesPage = function() {
+		if( Session.get('currentPage') === 'companiesPage') {
 			return true;
 		} else {
 			return false;
@@ -109,7 +121,7 @@ if (Meteor.isClient) {
      	return true;
      } else {
      	 Session.set('displayMessage', "Password must be at least 6 characters long.");
-     	 Session.set('displayMessageForm', form)
+     	 Session.set('displayMessageForm', form);
      	 return false;
      }
   	}
@@ -149,6 +161,35 @@ if (Meteor.isClient) {
 	      theme_function();
 	      console.log('Template onLoad');
 	    }
+	}
+	Template.companies.rendered = function() {
+		if(!this._rendered) {
+			this._rendered = true;
+			$(function(){
+
+            var $container = $('#gallery_container'),
+                  $filters = $("#filters a");
+        
+            $container.imagesLoaded( function(){
+                $container.isotope({
+                    itemSelector : '.photo',
+                    masonry: {
+                        columnWidth: 102
+                    }
+                });
+            });
+
+            // filter items when filter link is clicked
+            $filters.click(function() {
+                $filters.removeClass("active");
+                $(this).addClass("active");
+                var selector = $(this).data('filter');
+                $container.isotope({ filter: selector });
+                return false;
+            });
+        	console.log('Companies rendered');
+        });
+		}
 	}
 }
 
