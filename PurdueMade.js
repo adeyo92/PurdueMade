@@ -8,7 +8,8 @@ if (Meteor.isClient) {
 			"" : 	"main",
 			"login": "login",
 			"signup": "signup",
-			"companies": "companies"
+			"companies": "companies",
+			"company/:company_id": "company"
 		},
 
 		main: function() {
@@ -25,6 +26,11 @@ if (Meteor.isClient) {
 
 		companies: function() {
 			Session.set('currentPage', 'companiesPage');
+		},
+
+		company: function(company_id) {
+			Session.set('companyProfile', company_id);
+			Session.set('currentPage', 'companyPage');
 		}
 	});
 	var app = new Router;
@@ -59,7 +65,28 @@ if (Meteor.isClient) {
 			return false;
 		}
 	}
+	Template.renderPage.companyPage = function() {
+		if( Session.get('currentPage') === 'companyPage') {
+			return true;
+		} else {
+			return false;
+		}		
+	}
 
+	//Companies Templates
+	Template.companies.companies = function() {
+		return Companies.find();
+	}
+
+	//Company Profile Template
+	Template.company.rendered = function() {
+		console.log("kjflkdsfha");
+
+			var companyProfile = Companies.findOne(Session.get('companyProfile'));
+			console.log("dklfslkf");
+			return companyProfile;
+
+	}
 
 	 Template.login.events({
 
@@ -140,6 +167,8 @@ if (Meteor.isClient) {
     }
   });
 
+
+	//functions to load required javascript for UI on template render
 	Template.header.rendered = function() {
 	    if(!this._rendered) {
 			this._rendered = true;
@@ -162,7 +191,7 @@ if (Meteor.isClient) {
 	      console.log('Template onLoad');
 	    }
 	}
-	Template.companies.rendered = function() {
+	Template.companyTile.rendered = function() {
 		if(!this._rendered) {
 			this._rendered = true;
 			$(function(){
@@ -205,6 +234,7 @@ if (Meteor.isServer) {
 	  			picture: "kyk_logo.jpg",
 	  			description: "The dopest flavor nuetral energy powder company brah.",
 	  			website: "http://kykenergy.com",
+	  			category: "Retail",
 	  			resource: 0 //indicates whether the entry is a resource or a company. companies -> 0; resources -> 1
 	  		}
 	  		Companies.insert(testCompany);
