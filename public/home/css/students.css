@@ -1,6 +1,36 @@
 #students{
 	margin-top: 70px;
 }
+
+#students #filters {
+	list-style-type: none;
+	height: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+	margin-top: -20px;
+}
+#students #filters li {
+	display: inline-block;
+	font-size: 20px;
+	margin: 0px 6px;
+}
+#students #filters li.separator {
+	color: #c0c0c0;
+	font-weight: lighter;
+}
+#students #filters li a {
+	color: #3f3f3f;
+	font-style: italic;
+	-webkit-transition: color .2s;
+	-moz-transition: color .2s;
+	-ms-transition: color .2s;
+	transition: color .2s;
+}
+#students #filters li a:hover,
+#students #filters li a.active {
+	color: #a37600;
+}
+
 #students .header{
 	margin-left: 0;
 	margin-bottom: 56px;
@@ -45,7 +75,7 @@
 	left: 11px;
 }
 #students .post_row .post .img .date p{
-	color: #fff;
+	color: #a27500;
 	font-size: 14px;
 	font-weight: bold;
 	font-style: italic;
@@ -53,7 +83,8 @@
 }
 #students .post_row .post .img img {
 	height: 186px;
-	width: 100%;
+	width: 80%;
+	margin: 10px 0 0 22px;
 }
 #students .post_row .post .text{
 	margin: 18px auto 0;
@@ -138,6 +169,7 @@
 }*/
 #students .post_row .post:hover{
 	box-shadow: 0px 1px 5px 1px rgb(216, 216, 216);
+	background: rgba(163, 118, 0, 0.25)
 }
 #students .post_row .post:hover .text h5 a{
 	color: #a27500;
