@@ -1,5 +1,6 @@
 if (Meteor.isClient) {
 	Companies = new Meteor.Collection("companies");
+	Categories = new Meteor.Collection("categories");
 	People = new Meteor.Collection("people");
 
 	//handles routes and page navigation
@@ -77,15 +78,13 @@ if (Meteor.isClient) {
 	Template.companies.companies = function() {
 		return Companies.find();
 	}
+	Template.companies.categories = function() {
+		return Categories.find();
+	}
 
 	//Company Profile Template
-	Template.company.rendered = function() {
-		console.log("kjflkdsfha");
-
-			var companyProfile = Companies.findOne(Session.get('companyProfile'));
-			console.log("dklfslkf");
-			return companyProfile;
-
+	Template.companyProfile.companyInfo = function() {
+		return Companies.find(Session.get('companyProfile'));
 	}
 
 	 Template.login.events({
@@ -225,6 +224,7 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
 	Meteor.startup(function () {
 	  	Companies = new Meteor.Collection("companies");
+	  	Categories = new Meteor.Collection("categories");
 	  	People = new Meteor.Collection("people");
 
 	  	//insert test company data
@@ -237,7 +237,28 @@ if (Meteor.isServer) {
 	  			category: "Retail",
 	  			resource: 0 //indicates whether the entry is a resource or a company. companies -> 0; resources -> 1
 	  		}
-	  		Companies.insert(testCompany);
+	  		var companyPictures = [  "kyk_logo.jpg",
+	  								 "amatron.png",
+	  								 "cloud.png",
+	  								 "fruit.png",
+	  								 "music.png",
+	  								 "pirate.png",
+	  								 "raptor.png",
+	  								 "shitstorm.png",
+	  								 "soul.png"];
+	  		var companyCategories = [ "Retail", "SAAS", "Mobile", "Other"];
+	  		for($i = 0; $i < companyPictures.length; $i++) {
+	  			testCompany.picture = companyPictures[$i];
+	  			testCompany.category = companyCategories[Math.floor(Math.random()*companyCategories.length)];
+	  			Companies.insert(testCompany);	  			
+	  		}
+	  	}
+	  	//insert initial categories data
+	  	if(Categories.find().count() === 0){
+	  		var categorySet = [ "Retail", "SAAS", "Mobile", "Other"];
+	  		for($i = 0; $i < categorySet.length; $i++) {
+	  			Categories.insert({ name: categorySet[$i] });
+	  		}
 	  	}
 
 	  	//insert test people data

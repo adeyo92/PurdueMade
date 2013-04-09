@@ -33,7 +33,7 @@
         {{/if}}
 
         {{#if companyPage}}
-            {{>company}}
+            {{>companyProfile}}
         {{/if}}
 
 </template>
@@ -263,13 +263,6 @@
                     </form>
                 </div>
 
-                <!-- <div class="span5 remember">
-                    <label class="checkbox">
-                        <input type="checkbox"> Remember me
-                    </label>
-                    <a href="#">Forgot password?</a>
-                </div> -->
-
                 <div class="span12 dosnt">
                     <span>Already have an account?</span>
                     <a href="/login">Sign in</a>
@@ -280,7 +273,7 @@
 </template>
 
 <template name="companies">
- <div id="companies">
+    <div id="companies">
         <div class="container">
             <div class="section_header">
                 <h3>Companies</h3>
@@ -290,14 +283,10 @@
                     <div id="filters_container">
                         <ul id="filters">
                             <li><a href="#" data-filter="*" class="active">All</a></li>
-                            <li class="separator">/</li>
-                            <li><a href="#" data-filter=".SAAS">SAAS</a></li>
-                            <li class="separator">/</li>
-                            <li><a href="#" data-filter=".Mobile">Mobile</a></li>
-                            <li class="separator">/</li>
-                            <li><a href="#" data-filter=".E-Commerce">E-Commerce</a></li>
-                            <li class="separator">/</li>
-                            <li><a href="#" data-filter=".Other">Other</a></li>
+                            {{#each categories}}
+                                <li class="separator">/</li>
+                                <li><a href="#" data-filter=".{{name}}">{{name}}</a></li>                         
+                            {{/each}}
                         </ul>
                     </div>
                 </div>
@@ -308,87 +297,6 @@
                         {{#each companies}}
                             {{>companyTile}}
                         {{/each}}
-                        <div class="photo SAAS">
-                            <img src="img/pirate.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>SAAS</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo Other">
-                            <img src="img/cloud.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>Other</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo E-Commerce">
-                            <img src="img/fruit.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>E-Commerce</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo Other">
-                            <img src="img/Music.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>Other</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo Mobile">
-                            <img src="img/raptor.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>Mobile</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo E-Commerce">
-                            <img src="img/Shitstorm.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>E-Commerce</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo Other">
-                            <img src="img/soul.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>Other</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo SAAS">
-                            <img src="img/amatron.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>SAAS</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
-                        <div class="photo Mobile">
-                            <img src="img/cloud.png" />
-                            <a href="portfolio-item.html" class="mask">
-                                <h3>COMPANY NAME</h3>
-                                <small>www.company.com</small>
-                                <small>Mobile</small>
-                                <div class="more">+</div>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>            
@@ -398,7 +306,7 @@
 
 <template name="companyTile">
     <div class="photo {{category}}">
-        <img src="{{picture}}" />
+        <img src="company-logos/{{picture}}" />
         <a href="/company/{{_id}}" class="mask">
             <h3>{{name}}</h3>
             <small>{{website}}</small>
@@ -408,6 +316,8 @@
     </div>
 </template>
 
-<template name="company">
-    Company Name: {{name}}
+<template name="companyProfile">
+    {{#each companyInfo}}
+        Company Name: {{name}}
+    {{/each}}
 </template>
