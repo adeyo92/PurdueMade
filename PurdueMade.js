@@ -124,8 +124,24 @@ if (Meteor.isClient) {
 		        }
 	     		});
 	         return false; 
+	      },
+	      'click .facebook' : function(e, t){
+	      	Meteor.loginWithFacebook( {} , function(e) {
+	      		console.log(e);
+	      	});
+	      },	      
+	      'click .twitter' : function(e, t){
+	      	Meteor.loginWithTwitter( {} , function(e) {
+	      		console.log(e);
+	      	});
+	      },      
+	      'click .gplus' : function(e, t){
+	      	Meteor.loginWithGoogle( {} , function(e) {
+	      		console.log(e);
+	      	});
 	      }
 	  });
+
 		 Template.signup.events({
 	    'submit #signup-form' : function(e, t) {
 	      e.preventDefault();
@@ -230,7 +246,7 @@ if (Meteor.isClient) {
         	console.log('Companies rendered');
         });
 		}
-	}
+	}	
 }
 
 if (Meteor.isServer) {
