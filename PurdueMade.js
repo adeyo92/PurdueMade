@@ -10,7 +10,8 @@ if (Meteor.isClient) {
 			"login": "login",
 			"signup": "signup",
 			"companies": "companies",
-			"company/:company_id": "company"
+			"company/:company_id": "company",
+			"students": "students"
 		},
 
 		main: function() {
@@ -32,6 +33,10 @@ if (Meteor.isClient) {
 		company: function(company_id) {
 			Session.set('companyProfile', company_id);
 			Session.set('currentPage', 'companyPage');
+		},
+
+		students: function() {
+			Session.set('currentPage', 'studentsPage');
 		}
 	});
 	var app = new Router;
@@ -68,6 +73,13 @@ if (Meteor.isClient) {
 	}
 	Template.renderPage.companyPage = function() {
 		if( Session.get('currentPage') === 'companyPage') {
+			return true;
+		} else {
+			return false;
+		}		
+	}
+	Template.renderPage.studentsPage = function () {
+		if( Session.get('currentPage') === 'studentsPage') {
 			return true;
 		} else {
 			return false;
