@@ -86,6 +86,18 @@ if (Meteor.isClient) {
 		}		
 	}
 
+	//Header Events
+	Template.header.events({
+		'click #logout' : function(e, t) {
+			Meteor.logout( function(e) {
+				console.log("logged out");
+				if(e) {
+					console.log(e);
+				}
+			});
+		}
+	});
+
 	//Companies Templates
 	Template.companies.companies = function() {
 		return Companies.find();
@@ -99,70 +111,84 @@ if (Meteor.isClient) {
 		return Companies.find(Session.get('companyProfile'));
 	}
 
-	 Template.login.events({
-
+	Template.login.events({
 	    'submit #login-form' : function(e, t){
-	      e.preventDefault();
-	      // retrieve the input field values
-	      var email = t.find('#login-email').value
-	        , password = t.find('#login-password').value;
+	    	e.preventDefault();
+	    	// retrieve the input field values
+	    	var email = t.find('#login-email').value
+	    	, password = t.find('#login-password').value;
 
-	        // Trim and validate your fields here.... 
-	        email = trimInput(email);
+	    	// Trim and validate your fields here.... 
+	    	email = trimInput(email);
 
 
 	        // If validation passes, supply the appropriate fields to the
 	        // Meteor.loginWithPassword() function.
 	        Meteor.loginWithPassword(email, password, function(err){
 		        if (err) {
-		          // The user might not have been found, or their passwword
-		          // could be incorrect. Inform the user that their
-		          // login attempt has failed. 
+		        	// The user might not have been found, or their passwword
+		        	// could be incorrect. Inform the user that their
+		        	// login attempt has failed. 
 		          
 		        } else {
-		          // The user has been logged in.
+		        	// The user has been logged in.
 		        }
-	     		});
-	         return false; 
-	      },
-	      'click .facebook' : function(e, t){
+	     	});
+	        return false; 
+	    },
+	    'click .facebook' : function(e, t){
 	      	Meteor.loginWithFacebook( {} , function(e) {
 	      		console.log(e);
 	      	});
-	      },	      
-	      'click .twitter' : function(e, t){
+	    },	      
+	    'click .twitter' : function(e, t){
 	      	Meteor.loginWithTwitter( {} , function(e) {
 	      		console.log(e);
 	      	});
-	      },      
-	      'click .gplus' : function(e, t){
+	    },      
+	    'click .gplus' : function(e, t){
 	      	Meteor.loginWithGoogle( {} , function(e) {
 	      		console.log(e);
 	      	});
-	      }
-	  });
+	    }
+	});
 
-		 Template.signup.events({
+	Template.signup.events({
 	    'submit #signup-form' : function(e, t) {
-	      e.preventDefault();
-	      var email = t.find('#signup-email').value
+	    	e.preventDefault();
+	    	var email = t.find('#signup-email').value
 	        , password = t.find('#signup-password').value
 	        , confirm_password = t.find('#signup-confirm-password').value;
 
-	       // Trim and validate the input
-	       email = trimInput(email);
-	       password = isValidPassword(password, e.currentTarget.id);
+	    	// Trim and validate the input
+	    	email = trimInput(email);
+	    	password = isValidPassword(password, e.currentTarget.id);
 
-	      Accounts.createUser({email: email, password : password}, function(err) {
-	          if (err) {
+	    	Accounts.createUser({email: email, password : password}, function(err) {
+	    		if (err) {
 	            // Inform the user that account creation failed
-	          } else {
+	        	} else {
 	            // Success. Account has been created and the user
 	            // has logged in successfully. 
-	          }
+	        	}
 	        });
-	    	}
-	   });
+	    },
+	    'click .facebook' : function(e, t){
+	    	Meteor.loginWithFacebook( {} , function(e) {
+	      		console.log(e);
+	      	});
+	    },	      
+	    'click .twitter' : function(e, t){
+	    	Meteor.loginWithTwitter( {} , function(e) {
+	      		console.log(e);
+	      	});
+	    },      
+	    'click .gplus' : function(e, t){
+	      	Meteor.loginWithGoogle( {} , function(e) {
+	      		console.log(e);
+	      	});
+	    }
+	});
 
     // trim helper
 	  var trimInput = function(val) {
@@ -180,19 +206,19 @@ if (Meteor.isClient) {
      }
   	}
 
-  //function to display error messages
+	//function to display error messages
 	Deps.autorun(function() {
-    // Whenever this session variable changes, run this function.
-    var message = Session.get('displayMessage');
-    var messageForm = Session.get('displayMessageForm');
-    if (message) {
-    	//use jquery to diplay message
-    	$("#"+messageForm).prepend(message);
+	    // Whenever this session variable changes, run this function.
+	    var message = Session.get('displayMessage');
+	    var messageForm = Session.get('displayMessageForm');
+	    if (message) {
+	    	//use jquery to diplay message
+	    	$("#"+messageForm).prepend(message);
 
-      Session.set('displayMessage', null);
-      Session.set('displayMessageForm', null);
-    }
-  });
+	    	Session.set('displayMessage', null);
+	    	Session.set('displayMessageForm', null);
+	    }
+	});
 
 
 	//functions to load required javascript for UI on template render

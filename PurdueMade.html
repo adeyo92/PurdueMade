@@ -96,6 +96,7 @@
         </div>
     </div>
 </template>
+
 <template name="header">
     <div class="navbar transparent navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -110,18 +111,24 @@
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                  <li><a href="/companies">COMPANIES</a></li>
+                    <li><a href="/companies">COMPANIES</a></li>
                     <li><a href="/students">STUDENTS</a></li>
                     <li><a href="alumni.html">ALUMNI</a></li>
                     <li><a href="resources.html">RESOURCES</a></li>
+                    {{#if currentUser}}
+                    <li><a class="btn-header" href="/dashboard">Dashboard</a></li>
+                    <li><a id="logout" class="btn-header" href="#">Logout</a></li>
+                    {{else}}
                     <li><a class="btn-header" href="/signup">Sign up</a></li>
                     <li><a class="btn-header" href="/login">Login</a></li>
+                    {{/if}}
                 </ul>
             </div>
         </div>
       </div>
     </div>
 </template>
+
 <template name="feature_slider">
     <section id="feature_slider" class="">
         
