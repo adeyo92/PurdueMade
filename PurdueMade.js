@@ -86,7 +86,7 @@ if (Meteor.isClient) {
 		}		
 	}
 
-	//Header Events
+	//Header Events: used for page navigation
 	Template.header.events({
 		//note: using the _headerpage syntax because of conflicts with CSS when adding id values
 		'click #_logout' : function(e, t) {
@@ -99,22 +99,27 @@ if (Meteor.isClient) {
 		},
 		'click #_main' : function(e, t) {
 			e.preventDefault();
+			window.scrollTo(0,0);
 			app.navigate("", {trigger: true} );
 		},		
 		'click #_companies' : function(e, t) {
 			e.preventDefault();
+			window.scrollTo(0,0);
 			app.navigate("companies", {trigger: true} );
 		},
 		'click #_students' : function(e, t) {
 			e.preventDefault();
+			window.scrollTo(0,0);
 			app.navigate("students", {trigger: true} );
 		},
 		'click #_signup' : function(e, t) {
 			e.preventDefault();
+			window.scrollTo(0,0);
 			app.navigate("signup", {trigger: true} );
 		},
 		'click #_login' : function(e, t) {
 			e.preventDefault();
+			window.scrollTo(0,0);
 			app.navigate("login", {trigger: true} );
 		}
 	});
@@ -212,19 +217,19 @@ if (Meteor.isClient) {
 	});
 
     // trim helper
-	  var trimInput = function(val) {
-	    return val.replace(/^\s*|\s*$/g, "");
-	  }
+	var trimInput = function(val) {
+		return val.replace(/^\s*|\s*$/g, "");
+	}
 
-	  //make sure password is 6 characters
-	  var isValidPassword = function(val,form) {
-     if (val.length >= 6) {
-     	return true;
-     } else {
-     	 Session.set('displayMessage', "Password must be at least 6 characters long.");
-     	 Session.set('displayMessageForm', form);
-     	 return false;
-     }
+	//make sure password is 6 characters
+	var isValidPassword = function(val,form) {
+	    if (val.length >= 6) {
+	    	return true;
+	    } else {
+	     	Session.set('displayMessage', "Password must be at least 6 characters long.");
+	     	Session.set('displayMessageForm', form);
+	     	return false;
+	    }
   	}
 
 	//function to display error messages
