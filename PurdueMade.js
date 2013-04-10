@@ -88,6 +88,7 @@ if (Meteor.isClient) {
 
 	//Header Events
 	Template.header.events({
+		//note: using the _headerpage syntax because of conflicts with CSS when adding id values
 		'click #_logout' : function(e, t) {
 			Meteor.logout( function(e) {
 				console.log("logged out");
@@ -97,19 +98,24 @@ if (Meteor.isClient) {
 			});
 		},
 		'click #_main' : function(e, t) {
-			Session.set('currentPage', 'mainPage');
+			e.preventDefault();
+			app.navigate("", {trigger: true} );
 		},		
 		'click #_companies' : function(e, t) {
-			Session.set('currentPage', 'companiesPage');
+			e.preventDefault();
+			app.navigate("companies", {trigger: true} );
 		},
 		'click #_students' : function(e, t) {
-			Session.set('currentPage', 'studentsPage');
+			e.preventDefault();
+			app.navigate("students", {trigger: true} );
 		},
 		'click #_signup' : function(e, t) {
-			Session.set('currentPage', 'signupPage');
+			e.preventDefault();
+			app.navigate("signup", {trigger: true} );
 		},
 		'click #_login' : function(e, t) {
-			Session.set('currentPage', 'loginPage');
+			e.preventDefault();
+			app.navigate("login", {trigger: true} );
 		}
 	});
 
