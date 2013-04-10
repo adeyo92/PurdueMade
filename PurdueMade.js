@@ -88,13 +88,28 @@ if (Meteor.isClient) {
 
 	//Header Events
 	Template.header.events({
-		'click #logout' : function(e, t) {
+		'click #_logout' : function(e, t) {
 			Meteor.logout( function(e) {
 				console.log("logged out");
 				if(e) {
 					console.log(e);
 				}
 			});
+		},
+		'click #_main' : function(e, t) {
+			Session.set('currentPage', 'mainPage');
+		},		
+		'click #_companies' : function(e, t) {
+			Session.set('currentPage', 'companiesPage');
+		},
+		'click #_students' : function(e, t) {
+			Session.set('currentPage', 'studentsPage');
+		},
+		'click #_signup' : function(e, t) {
+			Session.set('currentPage', 'signupPage');
+		},
+		'click #_login' : function(e, t) {
+			Session.set('currentPage', 'loginPage');
 		}
 	});
 
