@@ -11,7 +11,10 @@ if (Meteor.isClient) {
 			"signup": "signup",
 			"companies": "companies",
 			"company/:company_id": "company",
-			"students": "students"
+			"students": "students",
+			"dashboard": "dashboard",
+			"alumni": "alumni",
+			"resources": "resources"
 		},
 
 		main: function() {
@@ -37,6 +40,18 @@ if (Meteor.isClient) {
 
 		students: function() {
 			Session.set('currentPage', 'studentsPage');
+		},
+
+		alumni: function() {
+			Session.set('currentPage', 'alumniPage');
+		},
+
+		resources: function() {
+			Session.set('currentPage', 'resourcesPage');
+		},
+
+		dashboard: function() {
+			Session.set('currentPage', 'dashboardPage');
 		}
 	});
 	var app = new Router;
@@ -85,18 +100,31 @@ if (Meteor.isClient) {
 			return false;
 		}		
 	}
+	Template.renderPage.alumniPage = function () {
+		if( Session.get('currentPage') === 'alumniPage') {
+			return true;
+		} else {
+			return false;
+		}		
+	}
+	Template.renderPage.resourcesPage = function () {
+		if( Session.get('currentPage') === 'resourcesPage') {
+			return true;
+		} else {
+			return false;
+		}		
+	}
+	Template.renderPage.dashboardPage = function() {
+		if( Session.get('currentPage') === 'dashboardPage') {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	//Header Events: used for page navigation
 	Template.header.events({
 		//note: using the _headerpage syntax because of conflicts with CSS when adding id values
-		'click #_logout' : function(e, t) {
-			Meteor.logout( function(e) {
-				console.log("logged out");
-				if(e) {
-					console.log(e);
-				}
-			});
-		},
 		'click #_main' : function(e, t) {
 			e.preventDefault();
 			window.scrollTo(0,0);
@@ -117,10 +145,34 @@ if (Meteor.isClient) {
 			window.scrollTo(0,0);
 			app.navigate("signup", {trigger: true} );
 		},
+		'click #_alumni' : function(e, t) {
+			e.preventDefault();
+			window.scrollTo(0,0);
+			app.navigate("alumni", {trigger: true} );
+		},
+		'click #_resources' : function(e, t) {
+			e.preventDefault();
+			window.scrollTo(0,0);
+			app.navigate("resources", {trigger: true} );
+		},
 		'click #_login' : function(e, t) {
 			e.preventDefault();
 			window.scrollTo(0,0);
 			app.navigate("login", {trigger: true} );
+		},
+		'click #_logout' : function(e, t) {
+			e.preventDefault();
+			Meteor.logout( function(e) {
+				console.log("logged out");
+				if(e) {
+					console.log(e);
+				}
+			});
+		},
+		'click #_dashboard' : function(e, t) {
+			e.preventDefault();
+			window.scrollTo(0,0);
+			app.navigate("dashboard", {trigger: true} );			
 		}
 	});
 
@@ -137,7 +189,13 @@ if (Meteor.isClient) {
 		return Companies.find(Session.get('companyProfile'));
 	}
 
+	//Students Templates
+	Template.students.students = function() {
+		return People.find();
+	}
+
 	Template.login.events({
+		//code for email login
 	    'submit #login-form' : function(e, t){
 	    	e.preventDefault();
 	    	// retrieve the input field values
@@ -162,6 +220,8 @@ if (Meteor.isClient) {
 	     	});
 	        return false; 
 	    },
+
+	    //social logins/signups
 	    'click .facebook' : function(e, t){
 	      	Meteor.loginWithFacebook( {} , function(e) {
 	      		console.log(e);
@@ -180,6 +240,7 @@ if (Meteor.isClient) {
 	});
 
 	Template.signup.events({
+		//code for email signup
 	    'submit #signup-form' : function(e, t) {
 	    	e.preventDefault();
 	    	var email = t.find('#signup-email').value
@@ -199,6 +260,8 @@ if (Meteor.isClient) {
 	        	}
 	        });
 	    },
+
+		//social logins/signups	    
 	    'click .facebook' : function(e, t){
 	    	Meteor.loginWithFacebook( {} , function(e) {
 	      		console.log(e);
@@ -249,32 +312,19 @@ if (Meteor.isClient) {
 
 	//functions to load required javascript for UI on template render
 	Template.header.rendered = function() {
-	    if(!this._rendered) {
-			this._rendered = true;
-			theme_function();
-			console.log('Template onLoad');
-	    }		
+		header_js();
+		console.log('Template onLoad');	
 	}
 	Template.feature_slider.rendered = function() {
-	    if(!this._rendered) {
-			this._rendered = true;
-			theme_function();
-			feature_slider_js();
-			console.log('Template onLoad');
-	    }
+		feature_slider_js();
+		console.log('Template onLoad');
 	}	
 	Template.service.rendered = function() {
-	    if(!this._rendered) {
-	      this._rendered = true;
-	      theme_function();
-	      console.log('Template onLoad');
-	    }
+	    servicesCircle.initialize();
+	    console.log('Template onLoad');
 	}
 	Template.companyTile.rendered = function() {
-		if(!this._rendered) {
-			this._rendered = true;
-			$(function(){
-
+		$(function(){
             var $container = $('#gallery_container'),
                   $filters = $("#filters a");
         
@@ -282,7 +332,7 @@ if (Meteor.isClient) {
                 $container.isotope({
                     itemSelector : '.photo',
                     masonry: {
-                        columnWidth: 102
+                        columnWidth: 313
                     }
                 });
             });
@@ -297,7 +347,31 @@ if (Meteor.isClient) {
             });
         	console.log('Companies rendered');
         });
-		}
+	}
+	Template.studentTile.rendered = function() {
+		$(function(){
+            var $container = $('#gallery_container'),
+                  $filters = $("#filters a");
+        
+            $container.imagesLoaded( function(){
+                $container.isotope({
+                    itemSelector : '.post',
+                    masonry: {
+                        columnWidth: 235
+                    }
+                });
+            });
+
+            // filter items when filter link is clicked
+            $filters.click(function() {
+                $filters.removeClass("active");
+                $(this).addClass("active");
+                var selector = $(this).data('filter');
+                $container.isotope({ filter: selector });
+                return false;
+            });
+        	console.log('Students rendered');
+        });		
 	}	
 }
 
@@ -352,9 +426,24 @@ if (Meteor.isServer) {
 	  			twitter: "andrewlinfoot",
 	  			linkedin: "alinfoot",
 	  			major: "Industrial Engineering",
-	  			gradClass: "2014"
+	  			gradClass: "2014",
+	  			skills: "design development"
+
 	  		}
-	  		People.insert(testPerson);
+	  		peopleDescriptions = [  "There are many variations of passages of generators on the embarrassing hidden in slightly distracted by these distribution of letters, as opposed.",
+	  								"I live STARTUPS!!!!!",
+	  								"There are many variations of passages of generators on the embarrassing hidden in slightly distracted by these distribution of letters, as opposed.There are many variations of passages of generators on the embarrassing hidden in slightly distracted by these distribution of letters, as opposed.There are many variations of passages of generators on the embarrassing hidden in slightly distracted by these distribution of letters, as opposed.",
+	  								"Description",
+	  								"Adeyo Smells"];
+	  		peopleSkills = ["design", "development", "sales", "marketing", "other"];
+	  		for($i = 1; $i < 10; $i++) {
+	  			testPerson.skills = peopleSkills[Math.floor(Math.random()*peopleSkills.length)];
+	  			testPerson.skills = testPerson.skills + " " + peopleSkills[Math.floor(Math.random()*peopleSkills.length)];
+	  			testPerson.description = peopleDescriptions[Math.floor(Math.random()*peopleDescriptions.length)];
+	  			testPerson.picture = "smile" + $i + ".jpg";
+	  			People.insert(testPerson);
+	  		}
+
 	  	}
 	});
 }

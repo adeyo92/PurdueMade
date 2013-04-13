@@ -56,7 +56,8 @@
 #students .post_row .post{
 	background: #fff;
 	margin-left: 0;
-	margin-right: 20px;
+	margin-right: 0px;
+	margin-bottom: 40px;
 	border-radius: 4px;
 	box-shadow: 1px 1px 2px 0px #E0E0E0;
 }

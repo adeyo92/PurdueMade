@@ -40,6 +40,18 @@
             {{>students}}
         {{/if}}
 
+        {{#if alumniPage}}
+            {{>alumni}}
+        {{/if}}
+
+        {{#if resourcesPage}}
+            {{>resources}}
+        {{/if}}
+
+        {{#if dashboardPage}}
+            {{>dashboard}}
+        {{/if}}
+
 </template>
 
 <template name='login'>
@@ -116,11 +128,11 @@
                     <li><a id="_alumni" href="">ALUMNI</a></li>
                     <li><a id="_resources" href="">RESOURCES</a></li>
                     {{#if currentUser}}
-                    <li><a id="_dashboard" class="btn-header" href="">Dashboard</a></li>
-                    <li><a id="_logout" class="btn-header" href="">Logout</a></li>
+                        <li><a id="_dashboard" class="btn-header" href="">Dashboard</a></li>
+                        <li><a id="_logout" class="btn-header" href="">Logout</a></li>
                     {{else}}
-                    <li><a id="_signup" class="btn-header" href="">Sign up</a></li>
-                    <li><a id="_login" class="btn-header" href="">Login</a></li>
+                        <li><a id="_signup" class="btn-header" href="">Sign up</a></li>
+                        <li><a id="_login" class="btn-header" href="">Login</a></li>
                     {{/if}}
                 </ul>
             </div>
@@ -236,6 +248,7 @@
         </div>
     </footer>
 </template>
+
 <template name="signup">
  <!-- Sign Un  -->
     <div id="sign_up1">
@@ -349,302 +362,64 @@
                         <ul id="filters">
                             <li><a href="#" data-filter="*" class="active">All</a></li>
                             <li class="separator">/</li>
-                            <li><a href="#" data-filter=".developers">Developers</a></li>
+                            <li><a href="#" data-filter=".development">Developers</a></li>
                             <li class="separator">/</li>
-                            <li><a href="#" data-filter=".designers">Designers</a></li>
+                            <li><a href="#" data-filter=".design">Designers</a></li>
                             <li class="separator">/</li>
                             <li><a href="#" data-filter=".sales">Sales</a></li>
                             <li class="separator">/</li>
                             <li><a href="#" data-filter=".marketing">Marketing</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".other">Other</a></li>
                         </ul>
                     </div>
                 </div>
             </div>     
 
             <!-- Post Row -->
-            <div class="row post_row">
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Ben Haggerty</a></h5>
-                        <span class="date">Macklemore</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>CEO, Developer</h6>
-                        <p>www.macklemore.com</p>
-                        </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-                
-                
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile2.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Idi Amin</a></h5>
-                        <span class="date">Uganda</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>CEO, Dictator</h6>
-                        <p>No Website</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile2.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Idi Amin</a></h5>
-                        <span class="date">Uganda</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>CEO, Dictator</h6>
-                        <p>No Website</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-
-                <!-- Post -->
-                <div class="span3 post last">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile3.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="blogpost.html">Bar Refaeli</a></h5>
-                        <span class="date">ELLE</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>Designer, Spokesperson</h6>
-                        <p>www.elle.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
+            <div id="gallery_container">
+                <div class="row post_row">
+                    {{#each students}}
+                        {{>studentTile}}
+                    {{/each}}
                 </div>
             </div>
 
-            <!-- Post Row -->
-            <div class="row post_row">
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile4.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Lebron James</a></h5>
-                        <span class="date">Miami Heat</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>CEO, Marketing</h6>
-                        <p>www.miamiheat.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile5.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Steve Jobs</a></h5>
-                        <span class="date">Apple Inc.</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>CEO, Co-Founder</h6>
-                        <p>www.apple.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-                
-                 <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile5.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Steve Jobs</a></h5>
-                        <span class="date">Apple Inc.</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>CEO, Co-Founder</h6>
-                        <p>www.apple.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-
-                <!-- Post -->
-                <div class="span3 post last">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile6.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Albert Einstien</a></h5>
-                        <span class="date">Relativity</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>Researcher</h6>
-                        <p>www.relativity.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Post Row -->
-            <div class="row post_row lastpost_row">
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile7.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Mark Zuckerberg</a></h5>
-                        <span class="date">Facebook</span>
-                        <p>
-                            There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                   <div class="author_box">
-                        <h6>CEO, Co-Founder</h6>
-                        <p>www.facebook.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/Smile8.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Gary Vaynerchuk</a></h5>
-                        <span class="date">Vaynermedia</span>
-                        <p>
-                            I pay my Interns minimum wage!</p>
-                    </div>
-                   <div class="author_box">
-                        <h6>CEO</h6>
-                        <p>vaynermedia.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-                
-                <!-- Post -->
-                <div class="span3 post">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/Smile8.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Gary Vaynerchuk</a></h5>
-                        <span class="date">Vaynermedia</span>
-                        <p>
-                            I pay my Interns minimum wage!</p>
-                    </div>
-                   <div class="author_box">
-                        <h6>CEO</h6>
-                        <p>vaynermedia.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-
-                <!-- Post -->
-                <div class="span3 post last">
-                    <div class="img">
-                        <a href="info.html">
-                            <img src="img/smile9.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h5><a href="info.html">Kanye West</a></h5>
-                        <span class="date">G.O.O.D. Music </span>
-                        <p>
-                           There are many variations of passages of generators on the  embarrassing hidden in  slightly distracted by these distribution of letters, as opposed.</p>
-                    </div>
-                    <div class="author_box">
-                        <h6>CEO, Founder, Designer</h6>
-                        <p>www.goodmusic.com</p>
-                    </div>
-                    <a class="plus_wrapper" href="info.html">
-                        <span>&#43;</span>
-                    </a>
-                </div>
-            </div>
-            <div class="pagination">
-                <ul>
-                    <li><a href="#">Prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
-            </div>
         </div>
     </div>
+</template>
 
+<template name="studentTile">
+    <div class="span3 post {{skills}}">
+        <div class="img">
+            <a href="info.html">
+                <img src="people-profiles/{{picture}}" alt="">
+            </a>
+        </div>
+        <div class="text">
+            <h5><a href="info.html">{{name}}</a></h5>
+            <span class="date">{{major}}</span>
+            <p>{{description}}</p>
+        </div>
+        <div class="author_box">
+            <h6>{{title}}</h6>
+            <h6>{{skills}}</h6>
+            <p>{{website}}</p>
+            </div>
+        <a class="plus_wrapper" href="info.html">
+            <span>&#43;</span>
+        </a>
+    </div> 
+</template>
+
+<template name="dashboard">
+    Dashboard yeah!
+</template>
+
+<template name="alumni">
+    alumni page
+</template>
+
+<template name="resources">
+    resources page
 </template>

@@ -1,4 +1,4 @@
-var theme_function = function () {
+var header_js = function () {
     $(window).scroll(function() {
         if ($(".navbar").offset().top>30) {
             $(".navbar-inner").addClass("sticky");
@@ -13,13 +13,19 @@ var theme_function = function () {
         $('.flexslider').flexslider();
     }
 
-    servicesCircle.initialize();
-
     staticHeader.initialize();
-
-    portfolioItem.initialize();
 };
 
+var staticHeader = {
+    initialize: function () {
+        if ($(".navbar-static-top").length) {
+            $("body").css("padding-top", 0);
+        }
+    }
+}
+
+
+//Doesn't do anything right now...
 var portfolioItem = {
     initialize: function () {
         var $container = $("#portfolio_tem .left_box");
@@ -37,14 +43,7 @@ var portfolioItem = {
     }
 }
 
-var staticHeader = {
-    initialize: function () {
-        if ($(".navbar-static-top").length) {
-            $("body").css("padding-top", 0);
-        }
-    }
-}
-
+//Main page circles menu
 var servicesCircle = {
     initialize: function () {
         var $container = $(".services_circles");
