@@ -451,6 +451,11 @@ if (Meteor.isServer) {
 	  			picture: "kyk_logo.jpg",
 	  			description: "The dopest flavor nuetral energy powder company brah.",
 	  			website: "http://kykenergy.com",
+	  			social: { 	facebook: "kykenergy",
+	  						twitter:  "kykenergy",
+	  						linkedin: "alinfoot",
+	  						github:   "ajlin500" 
+	  			},
 	  			category: "Retail",
 	  			resource: 0 //indicates whether the entry is a resource or a company. companies -> 0; resources -> 1
 	  		}
