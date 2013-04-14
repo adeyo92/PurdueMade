@@ -194,6 +194,19 @@ if (Meteor.isClient) {
 		return People.find();
 	}
 
+	//Alumni Templates
+	Template.alumni.alumni = function() {
+		return People.find();
+	}
+
+	//Resources Templates
+	Template.resources.resources = function() {
+		return Companies.find();
+	}
+	Template.resources.categories = function() {
+		return Categories.find();
+	}
+
 	Template.login.events({
 		//code for email login
 	    'submit #login-form' : function(e, t){
@@ -372,6 +385,56 @@ if (Meteor.isClient) {
             });
         	console.log('Students rendered');
         });		
+	}		
+	Template.alumTile.rendered = function() {
+		$(function(){
+            var $container = $('#gallery_container'),
+                  $filters = $("#filters a");
+        
+            $container.imagesLoaded( function(){
+                $container.isotope({
+                    itemSelector : '.post',
+                    masonry: {
+                        columnWidth: 235
+                    }
+                });
+            });
+
+            // filter items when filter link is clicked
+            $filters.click(function() {
+                $filters.removeClass("active");
+                $(this).addClass("active");
+                var selector = $(this).data('filter');
+                $container.isotope({ filter: selector });
+                return false;
+            });
+        	console.log('Students rendered');
+        });		
+	}
+	Template.resourceTile.rendered = function() {
+		$(function(){
+            var $container = $('#gallery_container'),
+                  $filters = $("#filters a");
+        
+            $container.imagesLoaded( function(){
+                $container.isotope({
+                    itemSelector : '.photo',
+                    masonry: {
+                        columnWidth: 313
+                    }
+                });
+            });
+
+            // filter items when filter link is clicked
+            $filters.click(function() {
+                $filters.removeClass("active");
+                $(this).addClass("active");
+                var selector = $(this).data('filter');
+                $container.isotope({ filter: selector });
+                return false;
+            });
+        	console.log('Companies rendered');
+        });
 	}	
 }
 

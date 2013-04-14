@@ -352,9 +352,6 @@
         <div class="container">
             <div class="section_header">
                 <h3>Students</h3>
-                
-
-                <input type="text" class="input-large search-query" placeholder="Search">
             </div>
             <div class="row">
                 <div class="span12">
@@ -417,9 +414,107 @@
 </template>
 
 <template name="alumni">
-    alumni page
+    <div id="students">
+        <div class="container">
+            <div class="section_header">
+                <h3>Alumni</h3>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div id="filters_container">
+                        <ul id="filters">
+                            <li><a href="#" data-filter="*" class="active">All</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".development">Developers</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".design">Designers</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".sales">Sales</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".marketing">Marketing</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="#" data-filter=".other">Other</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>     
+
+            <!-- Post Row -->
+            <div id="gallery_container">
+                <div class="row post_row">
+                    {{#each alumni}}
+                        {{>alumTile}}
+                    {{/each}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</template>
+
+<template name="alumTile">
+    <div class="span3 post {{skills}}">
+        <div class="img">
+            <a href="info.html">
+                <img src="people-profiles/{{picture}}" alt="">
+            </a>
+        </div>
+        <div class="text">
+            <h5><a href="info.html">{{name}}</a></h5>
+            <span class="date">{{major}}</span>
+            <p>{{description}}</p>
+        </div>
+        <div class="author_box">
+            <h6>{{title}}</h6>
+            <h6>{{skills}}</h6>
+            <p>{{website}}</p>
+            </div>
+        <a class="plus_wrapper" href="info.html">
+            <span>&#43;</span>
+        </a>
+    </div>
 </template>
 
 <template name="resources">
-    resources page
+    <div id="companies">
+        <div class="container">
+            <div class="section_header">
+                <h3>Resources</h3>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div id="filters_container">
+                        <ul id="filters">
+                            <li><a href="#" data-filter="*" class="active">All</a></li>
+                            {{#each categories}}
+                                <li class="separator">/</li>
+                                <li><a href="#" data-filter=".{{name}}">{{name}}</a></li>                         
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="span12">
+                    <div id="gallery_container">
+                        {{#each resources}}
+                            {{>resourceTile}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</template>
+
+<template name="resourceTile" >
+    <div class="photo {{category}}">
+        <img src="company-logos/{{picture}}" />
+        <a href="/company/{{_id}}" class="mask">
+            <h3>{{name}}</h3>
+            <small>{{website}}</small>
+            <small>{{category}}</small>
+            <div class="more">+</div>
+        </a>
+    </div>
 </template>
