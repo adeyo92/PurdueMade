@@ -1,6 +1,5 @@
 @charset "utf-8";
 /* CSS Document */
-@import url("social-icons.css");
 
 #portfolio_tem{
 	margin-top: 0px;
@@ -86,10 +85,50 @@
 	color: #3F3F3F;
 }
 
-#social-links {
-	margin-top:20px;
-	float: right;
+/*in body*/
+#portfolio_tem .social a {
+	margin: 40px;
+}
+#portfolio_tem  .social a span{
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+}
+#portfolio_tem  .social span.ico1,
+#portfolio_tem .social span.ico1h{
+	background-position: 0px 0px;
+}
+#portfolio_tem  .social span.ico2,
+#portfolio_tem  .social span.ico2h{
+	background-position: -37px 0px;
+}
+#portfolio_tem .social span.ico3,
+#portfolio_tem .social span.ico3h{
+	background-position: -75px 0px;
+}
+#portfolio_tem  .social span.ico4,
+#portfolio_tem .social span.ico4h{
+	background-position: -112px -1px;
+}
+#portfolio_tem  .social span.ico5,
+#portfolio_tem  .social span.ico5h{
+	background-position: -151px 0px;
+}
+#portfolio_tem  .social span.ico6,
+#portfolio_tem  .social span.ico6h{
+	background-position: -188px -1px;
+}
+#portfolio_tem  .social span.ico7,
+#portfolio_tem .social span.ico7h{
+	background-position: -226px 0px;
+}
+#portfolio_tem  .social a:hover span.socialicons{
 
+}
+#portfolio_tem .social a:hover span.socialicons_h{
+	display: inline-block !important;
+}
+#portfolio_tem  .social span.socialicons_h{
 	
 /* Responsive
 -------------------------------------------------- */
