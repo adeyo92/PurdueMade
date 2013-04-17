@@ -342,7 +342,86 @@
 
 <template name="companyProfile">
     {{#each companyInfo}}
-        Company Name: {{name}}
+    <div id="portfolio_tem">
+        <div class="container">
+            <div class="section_header">
+                <h3>Company Profile</h3>
+            </div>
+
+            <div class="span5 left_box">
+                <div class="big">
+                    <img src="/company-logos/{{picture}}">
+                </div>
+                <div class="thumbs">
+                <div class="section_header">
+                <h3>People</h3>
+            </div>
+                    <div class="thumb">
+                        <img src="img/energy.jpg">
+                        <a href="#" class="mask">
+                            <div class="more">+</div>
+                        </a>
+                    </div>
+                    <div class="thumb">
+                        <img src="img/energy1.jpg">
+                        <a href="#" class="mask">
+                            <div class="more">+</div>
+                        </a>
+                    </div>
+                    <div class="thumb">
+                        <img src="img/energy2.jpg">
+                        <a href="#" class="mask">
+                            <div class="more">+</div>
+                        </a>
+                    </div>
+                    <div class="thumb">
+                        <img src="img/energy3.jpg">
+                        <a href="#" class="mask">
+                            <div class="more">+</div>
+                        </a>
+                    </div>
+                </div>       
+            </div>
+            <div class="span7 right_box">
+                <div class="section_header">
+                <h3>About Us</h3>
+            </div>
+                <p>{{description}}</p>
+                    
+                    <div class="social">
+                    <div class="section_header">
+                        <h3>Website</h3>
+                    </div>
+                        <p><a href="{{website}}">{{website}}</a></p>
+                    </div>
+            
+                    <!-- start: Social Sites -->
+                <div class="span7">
+                     <div class="section_header">
+                <h3>Social</h3>
+            
+            {{#if social}}  
+            </div>
+                <ul class="social-bookmarks">
+                    {{#if social.facebook}}
+                        <li class="facebook"><a href="http://www.facebook.com/{{social.facebook}}">facebook</a></li>
+                    {{/if}}
+                    {{#if social.twitter}}
+                        <li class="twitter"><a href="https://twitter.com/{{social.twitter}}">twitter</a></li>
+                    {{/if}}
+                    {{#if social.github}}
+                        <li class="github"><a href="http://github.com/{{social.github}}">github</a></li>
+                    {{/if}}
+                    {{#if social.linkedin}}
+                        <li class="linkedin"><a href="http://www.linkedin.com/in/{{social.linkedin}}">linkedin</a><li>
+                    {{/if}}
+                </ul>
+            </div>
+            <!-- end: Social Sites -->
+            {{/if}}
+                    
+        </div>
+    </div>
     {{/each}}
 </template>
 
@@ -399,6 +478,7 @@
             <p>{{description}}</p>
         </div>
         <div class="author_box">
+            <h6>Class of {{gradClass}}</h6>
             <h6>{{title}}</h6>
             <h6>{{skills}}</h6>
             <p>{{website}}</p>
@@ -465,6 +545,7 @@
             <p>{{description}}</p>
         </div>
         <div class="author_box">
+            <h6>Class of {{gradClass}}</h6>
             <h6>{{title}}</h6>
             <h6>{{skills}}</h6>
             <p>{{website}}</p>

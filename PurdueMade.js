@@ -191,12 +191,22 @@ if (Meteor.isClient) {
 
 	//Students Templates
 	Template.students.students = function() {
-		return People.find();
+		if((new Date).getMonth()<5){
+			return People.find({gradClass:{$gt: ((new Date).getFullYear()-1)}});
+		}
+		else{
+			return People.find({gradClass:{$gt: ((new Date).getFullYear())}});
+		}
 	}
 
 	//Alumni Templates
 	Template.alumni.alumni = function() {
-		return People.find();
+		if((new Date).getMonth()<5){
+			return People.find({gradClass:{$lt: (new Date).getFullYear()}});
+		}
+		else{
+			return People.find({gradClass:{$lt: (new Date).getFullYear()-1}});
+		}
 	}
 
 	//Resources Templates
@@ -451,6 +461,11 @@ if (Meteor.isServer) {
 	  			picture: "kyk_logo.jpg",
 	  			description: "The dopest flavor nuetral energy powder company brah.",
 	  			website: "http://kykenergy.com",
+	  			social: { 	facebook: "kykenergy",
+	  						twitter:  "kykenergy",
+	  						linkedin: "alinfoot",
+	  						github:   "ajlin500" 
+	  			},
 	  			category: "Retail",
 	  			resource: 0 //indicates whether the entry is a resource or a company. companies -> 0; resources -> 1
 	  		}
@@ -499,11 +514,13 @@ if (Meteor.isServer) {
 	  								"Description",
 	  								"Adeyo Smells"];
 	  		peopleSkills = ["design", "development", "sales", "marketing", "other"];
+	  		gradYears = [1995, 1999, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
 	  		for($i = 1; $i < 10; $i++) {
 	  			testPerson.skills = peopleSkills[Math.floor(Math.random()*peopleSkills.length)];
 	  			testPerson.skills = testPerson.skills + " " + peopleSkills[Math.floor(Math.random()*peopleSkills.length)];
 	  			testPerson.description = peopleDescriptions[Math.floor(Math.random()*peopleDescriptions.length)];
 	  			testPerson.picture = "smile" + $i + ".jpg";
+	  			testPerson.gradClass = gradYears[$i];
 	  			People.insert(testPerson);
 	  		}
 
