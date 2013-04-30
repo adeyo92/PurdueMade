@@ -454,6 +454,35 @@ if (Meteor.isServer) {
 	  	Categories = new Meteor.Collection("categories");
 	  	People = new Meteor.Collection("people");
 
+	  	//configure login services
+	  	// first, remove configuration entry in case service is already configured
+		Accounts.loginServiceConfiguration.remove({
+		  service: "facebook"
+		});
+		Accounts.loginServiceConfiguration.insert({
+		  service: "facebook",
+		  appId: "115652908630594",
+		  secret: "a2a259059c63cd0ca428a702c2935438"
+		});	
+			
+		Accounts.loginServiceConfiguration.remove({
+		  service: "twitter"
+		});
+		Accounts.loginServiceConfiguration.insert({
+		  service: "twitter",
+		  consumerKey: "KHlJjlE0mbVFk7ArszE9A",
+		  secret: "A6FU2llIwV8BNcADE9VvbKyDBNFtiyKCFK4zhblXeY"
+		});		
+		Accounts.loginServiceConfiguration.remove({
+		  service: "google"
+		});
+		Accounts.loginServiceConfiguration.insert({
+		  service: "google",
+		  clientId: "692971717232.apps.googleusercontent.com",
+		  secret: "opx579oK3GXBZdGPBfUOCtC3"
+		});
+
+
 	  	//insert test company data
 	  	if(Companies.find().count() === 0){
 	  		var testCompany = {
