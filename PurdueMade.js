@@ -9,6 +9,7 @@ if (Meteor.isClient) {
 			"" : 	"main",
 			"login": "login",
 			"signup": "signup",
+			"reset": "reset",
 			"companies": "companies",
 			"company/:company_id": "company",
 			"students": "students",
@@ -27,6 +28,10 @@ if (Meteor.isClient) {
 
 		signup: function() {
 			Session.set('currentPage', 'signupPage');
+		},
+
+		reset: function() {
+			Session.set('currentPage', 'resetPage');
 		},
 
 		companies: function() {
@@ -74,6 +79,13 @@ if (Meteor.isClient) {
 	}
 	Template.renderPage.signupPage = function() {
 		if( Session.get('currentPage') === 'signupPage') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	Template.renderPage.resetPage = function() {
+		if( Session.get('currentPage') === 'resetPage') {
 			return true;
 		} else {
 			return false;
@@ -282,6 +294,36 @@ if (Meteor.isClient) {
 	            // has logged in successfully. 
 	        	}
 	        });
+	    },
+
+		//social logins/signups	    
+	    'click .facebook' : function(e, t){
+	    	Meteor.loginWithFacebook( {} , function(e) {
+	      		console.log(e);
+	      	});
+	    },	      
+	    'click .twitter' : function(e, t){
+	    	Meteor.loginWithTwitter( {} , function(e) {
+	      		console.log(e);
+	      	});
+	    },      
+	    'click .gplus' : function(e, t){
+	      	Meteor.loginWithGoogle( {} , function(e) {
+	      		console.log(e);
+	      	});
+	    }
+	});
+
+	Template.reset.events({
+		//code for password reset
+	    'submit #reset-form' : function(e, t) {
+	    	e.preventDefault();
+	    	var email = t.find('#reset-email').value;
+
+	    	// Trim and validate the input
+	    	email = trimInput(email);
+
+	    	// CODE TO SEND PASSWORD RESET EMAIL GOES HERE
 	    },
 
 		//social logins/signups	    
