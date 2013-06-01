@@ -1,6 +1,7 @@
 if (Meteor.isClient) {
 	Companies = new Meteor.Collection("companies");
-	Categories = new Meteor.Collection("categories");
+	CompanyCategories = new Meteor.Collection("companyCategories");
+	ResourceCategories = new Meteor.Collection("resourceCategories");
 	People = new Meteor.Collection("people");
 
 	//handles routes and page navigation
@@ -190,10 +191,10 @@ if (Meteor.isClient) {
 
 	//Companies Templates
 	Template.companies.companies = function() {
-		return Companies.find();
+		return Companies.find({resource:0});
 	}
 	Template.companies.categories = function() {
-		return Categories.find();
+		return CompanyCategories.find();
 	}
 
 	//Company Profile Template
@@ -223,10 +224,10 @@ if (Meteor.isClient) {
 
 	//Resources Templates
 	Template.resources.resources = function() {
-		return Companies.find();
+		return Companies.find({resource:1});
 	}
 	Template.resources.categories = function() {
-		return Categories.find();
+		return ResourceCategories.find();
 	}
 
 	Template.login.events({
@@ -485,7 +486,7 @@ if (Meteor.isClient) {
                 $container.isotope({ filter: selector });
                 return false;
             });
-        	console.log('Companies rendered');
+        	console.log('Resources rendered');
         });
 	}	
 }
@@ -493,7 +494,8 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
 	Meteor.startup(function () {
 	  	Companies = new Meteor.Collection("companies");
-	  	Categories = new Meteor.Collection("categories");
+	CompanyCategories = new Meteor.Collection("companyCategories");
+	ResourceCategories = new Meteor.Collection("resourceCategories");
 	  	People = new Meteor.Collection("people");
 
 	  	//configure login services
@@ -550,17 +552,30 @@ if (Meteor.isServer) {
 	  								 "shitstorm.png",
 	  								 "soul.png"];
 	  		var companyCategories = [ "Retail", "SAAS", "Mobile", "Other"];
+	  		var resourceCategories = [ "Prototyping", "Production", "Marketing", "Other"];
 	  		for($i = 0; $i < companyPictures.length; $i++) {
 	  			testCompany.picture = companyPictures[$i];
-	  			testCompany.category = companyCategories[Math.floor(Math.random()*companyCategories.length)];
+	  			testCompany.resource = Math.floor(Math.random()*2);
+	  			if(testCompany.resource === 0){
+	  				testCompany.category = companyCategories[Math.floor(Math.random()*companyCategories.length)];
+	  			}
+	  			else{
+	  				testCompany.category = resourceCategories[Math.floor(Math.random()*resourceCategories.length)];
+	  			}
 	  			Companies.insert(testCompany);	  			
 	  		}
 	  	}
 	  	//insert initial categories data
-	  	if(Categories.find().count() === 0){
+	  	if(CompanyCategories.find().count() === 0){
 	  		var categorySet = [ "Retail", "SAAS", "Mobile", "Other"];
 	  		for($i = 0; $i < categorySet.length; $i++) {
-	  			Categories.insert({ name: categorySet[$i] });
+	  			CompanyCategories.insert({ name: categorySet[$i] });
+	  		}
+	  	}
+	  	if(ResourceCategories.find().count() === 0){
+	  		var categorySet2 = [ "Prototyping", "Production", "Marketing", "Other"];
+	  		for($i = 0; $i < categorySet2.length; $i++) {
+	  			ResourceCategories.insert({ name: categorySet2[$i] });
 	  		}
 	  	}
 
